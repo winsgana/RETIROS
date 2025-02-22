@@ -4,7 +4,7 @@ header("Content-Type: application/json");
 
 // Configuración del bot de Telegram
 $TOKEN = "7957554764:AAHUzfquZDDVEiwOy_u292haqMmPK2uCKDI";  
-$CHAT_ID = "-4633546693";  // Chat de administradores
+$CHAT_ID = "-4757550811";  // Chat de administradores
 
 // Solo aceptar solicitudes POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
