@@ -1,7 +1,7 @@
 <?php
 $TOKEN = "7957554764:AAHUzfquZDDVEiwOy_u292haqMmPK2uCKDI";
 
-// Capturar la entrada de Telegram
+// Capturar los datos enviados por Telegram
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 
@@ -14,12 +14,13 @@ if (isset($update["callback_query"])) {
     $data = $update["callback_query"]["data"];  // Botón presionado
 
     if ($data == "completado") {
-        $nuevo_texto = "✅ *Pago realizado.*";
+        $nuevo_texto = "✅ *Pago completado.*";
     } elseif ($data == "rechazado") {
         $nuevo_texto = "❌ *Pago rechazado.*";
     }
 
-    // Actualiza el mensaje usando editMessageCaption ya que se envió un documento
-    file_get_contents("https://api.telegram.org/bot$TOKEN/editMessageCaption?chat_id=$chat_id&message_id=$message_id&caption=" . urlencode($nuevo_texto) . "&parse_mode=Markdown");
+    // Actualiza el mensaje usando editMessageCaption
+    $url = "https://api.telegram.org/bot$TOKEN/editMessageCaption?chat_id=$chat_id&message_id=$message_id&caption=" . urlencode($nuevo_texto) . "&parse_mode=Markdown";
+    file_get_contents($url);
 }
 ?>
