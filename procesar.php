@@ -27,42 +27,36 @@ if ($_FILES["file"]["error"] !== UPLOAD_ERR_OK) {
   exit;
 }
 
+// Generar número de orden aleatorio
+$uniqueId = "DP" . str_pad(rand(0, 9999), 5, "0", STR_PAD_LEFT);
+
 // Verificar número de documento
 if (!isset($_POST['docNumber']) || empty(trim($_POST['docNumber']))) {
   http_response_code(400);
   echo json_encode(["message" => "Número de documento es requerido"]);
   exit;
 }
-$docNumber = substr(trim($_POST['docNumber']), 0, 12); // Limitar a 12 caracteres
+$docNumber = substr(trim($_POST['docNumber']), 0, 12);
 
-// Verificar y formatear el monto
+// Verificar y tomar el monto directamente como lo recibe el formulario
 if (!isset($_POST['monto']) || empty(trim($_POST['monto']))) {
   http_response_code(400);
   echo json_encode(["message" => "El monto es requerido"]);
   exit;
 }
-// Eliminar cualquier carácter que no sea dígito (excepto el punto)
-$montoRaw = preg_replace('/[^\d]/', '', $_POST['monto']);
-
-// Formatear el monto si tiene más de 3 dígitos (para 4 dígitos se inserta punto)
-if (strlen($montoRaw) === 4) {
-  $montoFormatted = substr($montoRaw, 0, 1) . '.' . substr($montoRaw, 1);
-} else {
-  $montoFormatted = $montoRaw;
-}
+$monto = $_POST['monto'];  // Tomar el monto directamente como lo recibe
 
 $nombreArchivo = $_FILES["file"]["name"];
 $rutaTemporal = $_FILES["file"]["tmp_name"];
-$fecha = date('Y-m-d H:i:s');  // Fecha y hora actual
+$fecha = date('Y-m-d H:i:s');
 
 $url = "https://api.telegram.org/bot$TOKEN/sendDocument";
 
 // Preparar el mensaje que se enviará a Telegram
-$caption = "📎 Nuevo QR recibido:\n\n" .
-           "📝 Archivo: $nombreArchivo\n" .
+$caption = "🆔 Número de Orden: `$uniqueId`\n" .
            "📅 Fecha de carga: $fecha\n" .
            "🪪 Documento: $docNumber\n" .
-           "💰 Monto: $montoFormatted\n\n" .
+           "💰 Monto: $monto\n\n" .
            "🔔 Por favor, Realizar el pago.";
 
 $keyboard = json_encode([
@@ -91,7 +85,6 @@ $curl_error = curl_error($ch);
 $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
-// Si hubo error en la solicitud o el código HTTP no es 200
 if ($response === false || $http_status != 200) {
   http_response_code(500);
   echo json_encode([
@@ -103,5 +96,5 @@ if ($response === false || $http_status != 200) {
   exit;
 }
 
-echo json_encode(["message" => "✅ Comprobante enviado a administradores en Telegram"]);
+echo json_encode(["message" => "✅ Comprobante enviado a administradores", "orden" => $uniqueId]);
 ?>
