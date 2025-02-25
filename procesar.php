@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 // Configuración del bot de Telegram para pagos al cliente (QR)
-$TOKEN = "7957554764:AAHUzfquZDDVEiwOy_u292haqMmPK2uCKDI";  // Tu token de bot
+$TOKEN = "7649868783:AAF-aTgEuA2o7q2jaXGJ5awrysEy04hgJl4";  // Tu token de bot
 $CHAT_ID = "-4757550811";  // Chat ID para pagos al cliente
 
 // Solo se aceptan solicitudes POST
