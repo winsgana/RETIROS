@@ -16,8 +16,8 @@ $chatId = $update["callback_query"]["message"]["chat"]["id"];
 $messageId = $update["callback_query"]["message"]["message_id"];
 $user = $update["callback_query"]["from"];
 
-// Extraer el uniqueId y el monto del callback_data
-preg_match('/(completado|rechazado)-(DP\d{4})-(.*)/', $callbackData, $matches);
+// Extraer datos del callback_data
+preg_match('/(completado|rechazado)-(DP\d{4})-(.*?)-(\d{1,12})/', $callbackData, $matches);
 if (!$matches) {
     file_put_contents("callback_log.txt", "❌ Error: callback_data desconocido ($callbackData).\n", FILE_APPEND);
     exit;
