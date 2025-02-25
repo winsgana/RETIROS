@@ -28,22 +28,15 @@ if ($_FILES["file"]["error"] !== UPLOAD_ERR_OK) {
 }
 
 // Generar número de orden secuencial
-$registroNumeroOrden = 'ultimo_numero_orden.txt';
-
-// Verificar si el archivo existe
-if (!file_exists($registroNumeroOrden)) {
-    // Si no existe, crearlo con el valor inicial 0
-    file_put_contents($registroNumeroOrden, '0');
+$uniqueIdFile = "unique_id.txt";
+if (!file_exists($uniqueIdFile)) {
+    file_put_contents($uniqueIdFile, "0");  // Inicializar el archivo si no existe
 }
+$lastUniqueId = (int)file_get_contents($uniqueIdFile);
+$newUniqueId = $lastUniqueId + 1;
+file_put_contents($uniqueIdFile, $newUniqueId);  // Guardar el nuevo número
 
-// Leer el último número de orden del archivo
-$ultimoNumeroOrden = file_get_contents($registroNumeroOrden);
-
-// Incrementar el número de orden
-$uniqueId = "RT" . str_pad($ultimoNumeroOrden + 1, 4, "0", STR_PAD_LEFT);
-
-// Actualizar el archivo con el nuevo número de orden
-file_put_contents($registroNumeroOrden, $ultimoNumeroOrden + 1);
+$uniqueId = "RT" . str_pad($newUniqueId, 4, "0", STR_PAD_LEFT);
 
 // Verificar número de documento
 if (!isset($_POST['docNumber']) || empty(trim($_POST['docNumber']))) {
@@ -76,8 +69,8 @@ $caption = "🆔 Número de Orden: `$uniqueId`\n" .
 
 $keyboard = json_encode([
     "inline_keyboard" => [
-        [["text" => "✅ Completado", "callback_data" => "completado"]],
-        [["text" => "❌ Rechazado", "callback_data" => "rechazado"]]
+        [["text" => "✅ Completado", "callback_data" => "completado-$uniqueId"]],
+        [["text" => "❌ Rechazado", "callback_data" => "rechazado-$uniqueId"]]
     ]
 ]);
 
@@ -111,5 +104,5 @@ if ($response === false || $http_status != 200) {
   exit;
 }
 
-echo json_encode(["message" => "✅ Comprobante enviado a administradores", "orden" => $uniqueId]);
+echo json_encode(["message" => "✅ Comprobante enviado a administradores en Telegram", "orden" => $uniqueId]);
 ?>
