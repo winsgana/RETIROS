@@ -17,7 +17,7 @@ $messageId = $update["callback_query"]["message"]["message_id"];
 $user = $update["callback_query"]["from"];
 
 // Extraer datos del callback_data
-preg_match('/(completado|rechazado)-(DP\d{4})-(.*?)-(\d{1,12})/', $callbackData, $matches);
+preg_match('/(completado|rechazado)-(RT\d{4})-(.*?)-(\d{1,12})/', $callbackData, $matches);
 if (!$matches) {
     file_put_contents("callback_log.txt", "❌ Error: callback_data desconocido ($callbackData).\n", FILE_APPEND);
     exit;
