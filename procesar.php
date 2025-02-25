@@ -69,8 +69,8 @@ $caption = "🆔 Número de Orden: `$uniqueId`\n" .
 
 $keyboard = json_encode([
     "inline_keyboard" => [
-        [["text" => "✅ Completado", "callback_data" => "completado-$uniqueId"]],
-        [["text" => "❌ Rechazado", "callback_data" => "rechazado-$uniqueId"]]
+        [["text" => "✅ Completado", "callback_data" => "completado-$uniqueId-$monto"]],
+        [["text" => "❌ Rechazado", "callback_data" => "rechazado-$uniqueId-$monto"]]
     ]
 ]);
 
