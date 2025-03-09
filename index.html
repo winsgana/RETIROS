@@ -129,10 +129,10 @@
   <h2><span class="icon-text">🪙</span>MIN: 20 BOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-text">💰</span>MAX: 5,000 BOB</h2>
   <p class="instruction">🔔 Importante:
     El retiro debe ser solicitado únicamente por el titular de la cuenta en WinsGana,  
-    quien debe coincidir con el titular de la cuenta bancaria o billetera digital.  
+    quien debe coincidir con el titular de la cuenta bancaria o billetera digital.
     <br><br>
-    📌 Antes de solicitar un retiro, asegúrate de haber verificado tu cuenta en WinsGana.  
-    Solo las cuentas verificadas pueden procesar retiros.</p>
+  📌 Antes de solicitar un retiro, asegúrate de haber verificado tu cuenta en WinsGana.  
+  Solo las cuentas verificadas pueden procesar retiros.</p>
   <h1>HORARIO: 8:00 Am&nbsp;&nbsp;-&nbsp;&nbsp;8:00 Pm</h1>
 
   <!-- Formulario -->
@@ -142,7 +142,7 @@
 
     <label for="phoneNumber">Ingresa tu número de teléfono:</label>
     <input type="text" id="phoneNumber" name="phoneNumber" maxlength="8" required placeholder="Ej: 62162190">
-    
+
     <label for="monto">Monto que desea retirar:</label>
     <input type="text" id="monto" name="monto" maxlength="4" required placeholder="Ej: 100">
 
@@ -198,9 +198,10 @@
     const formData = new FormData();
     const file = fileInput.files[0];
     const docNumber = document.getElementById('docNumber').value.trim();
+    const phoneNumber = document.getElementById('phoneNumber').value.trim(); // Nuevo campo
     let monto = document.getElementById('monto').value.trim();
 
-    if (!file || !docNumber || !monto) {
+    if (!file || !docNumber || !monto || !phoneNumber) { // Validar el nuevo campo
       alert("Por favor, ingresa todos los campos y selecciona un archivo.");
       return;
     }
@@ -216,6 +217,7 @@
     formData.append('file', file);
     formData.append('docNumber', docNumber);
     formData.append('monto', monto);
+    formData.append('phoneNumber', phoneNumber); // Agregar el número de teléfono
 
     fetch('procesar.php', {
       method: 'POST',
