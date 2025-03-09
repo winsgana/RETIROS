@@ -73,3 +73,5 @@ curl_close($ch);
 
 sendWhatsApp($fullPhoneNumber, mensajeRecepcion($fecha, $monto));
 echo json_encode(["message" => "✅ Comprobante enviado"]);
+?>
+
