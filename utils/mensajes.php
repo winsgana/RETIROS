@@ -1,21 +1,24 @@
 <?php
 function mensajeRecepcion($fecha, $monto) {
-    return "✅ Su solicitud ha sido recibida\n\n" .
+    return "✅ ¡Recibimos tu solicitud de Retiro!\n" .
            "🗓 Fecha: $fecha\n" .
            "💰 Monto: $monto BOB\n\n" .
-           "🔔 Te notificaremos cuando esté procesada.";
+           "🔔 Estamos revisando tu solicitud. No te preocupes, te notificaremos una vez que esté completada.\n\n" .
+           "🔔 Recuerda: este es un canal de notificaciones automáticas.";
 }
 
 function mensajeCompletado() {
-    return "¡Es oficial! ✅ Tu solicitud está completamente lista.\n\n" .
-           "Gracias por ser parte de Winsgana, donde cada jugada cuenta y cada momento puede ser épico.\n\n" .
-           "🔥 Te deseamos la mejor de las suertes, porque la suerte premia a los valientes.\n\n" .
+    return "¡Es oficial! Dinero en mano, campeón.\n\n" .
+           "Disfruta de tu premio y sigue apostando con la emoción de un verdadero campeón. En Winsgana, siempre hay más oportunidades de ganar.\n\n" .
            "🔔 Recuerda: este es un canal de notificaciones automáticas.";
 }
 
 function mensajeRechazado() {
-    return "⚠️ Tu solicitud fue rechazada.\n\n" .
-           "Si crees que esto fue un error, puedes comunicarte con nuestro equipo de soporte para ayudarte.\n\n" .
+    return "⚠️ Tu solicitud no pudo ser procesada.\n\n" .
+           "Tu retiro ha sido rechazado porque no cumples con las políticas de Winsgana o tu cuenta aún no ha sido verificada.\n\n" .
+           "📞 Contáctanos para más información:\n" .
+           "📱 WhatsApp: +59162162190\n" .
+           "📧 Correo: soporte@winsgana.com\n\n" .
            "🔔 Recuerda: este es un canal de notificaciones automáticas.";
 }
 ?>
