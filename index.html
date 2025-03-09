@@ -125,9 +125,15 @@
 <div class="container">
   <!-- Título e Instrucción -->
   <img src="logo.png" alt="Logo" width="250">
-  <h1>ENVIANOS TU QR</h1>
+  <h1>🔒ENVIANOS TU QR</h1>
   <h2><span class="icon-text">🪙</span>Min: 20 BOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-text">💰</span>Max: 5,000 BOB</h2>
-  <p class="instruction">Por favor, ingresa tu número de documento y adjunta el documento de tu QR. Recuerda haber verificado tu cuenta para proceder con tu pago, solo se aceptan documentos JPG o PNG.</p>
+  <p class="instruction">🔔 **Importante:**  
+    El retiro debe ser solicitado únicamente por el titular de la cuenta en **Winsgana**,  
+    quien debe coincidir con el titular de la cuenta bancaria o billetera digital.  
+    <br><br>
+    📌 **Antes de solicitar un retiro, asegúrate de haber verificado tu cuenta en Winsgana.**  
+    Solo las cuentas verificadas pueden procesar retiros.</p>
+  <h1>HORARIO: 8:00 AM&nbsp;&nbsp;-&nbsp;&nbsp;8:00 PM</h1>
 
   <!-- Formulario -->
   <form id="uploadForm">
@@ -140,7 +146,7 @@
     <label for="monto">Monto que desea retirar:</label>
     <input type="text" id="monto" name="monto" maxlength="4" required placeholder="Ej: 100">
 
-    <label for="fileInput">Selecciona tu archivo:</label>
+    <label for="fileInput">Selecciona tu QR:</label>
     <input type="file" id="fileInput" name="file" accept=".pdf, image/jpeg, image/png" required>
 
     <div id="previewContainer"></div>
@@ -151,7 +157,7 @@
 <!-- Modal de éxito -->
 <div id="successModal" class="modal">
   <div class="modal-content">
-    <p>✅ Pronto tu pago será procesado, se te enviara una notificacion al correo.</p>
+    <p>✅ Pronto tu Retiro será procesado, se te enviara una notificacion al WhatsApp.</p>
     <button id="modalAccept">Aceptar</button>
   </div>
 </div>
